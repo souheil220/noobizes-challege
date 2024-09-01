@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "../assets/styles/HomePage.css"; // Import the CSS file
 
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
@@ -90,62 +91,83 @@ const HomePage: React.FC = () => {
     }
   };
   return (
-    <div>
-      <h1>HomePage</h1>
-      <div style={{ marginTop: "20px" }}>
-        {/* Read-Only Field */}
+    <>
+      <div className="bg-image"></div>
+      <div className="home-container">
+        <div className="overlay"></div>
+        <h3 className="text-4xl font-normal leading-normal mt-0 mb-2 text-red-800">
+          Choose your summoner
+        </h3>
 
-        <input
-          type="text"
-          value={inputValue}
-          onChange={handleInputChange}
-          placeholder="Enter something..."
-        />
+        <div style={{ marginTop: "20px" }} className="select-container">
+          {/* Read-Only Field */}
 
-        {/* Select Field */}
-        <select value={selectedRegionValue} onChange={handleSelectRegionChange}>
-          <option value="VN">VN</option>
-          <option value="TR">TR</option>
-          <option value="NA">NA</option>
-          <option value="ME">ME</option>
-          <option value="EUW">EUW</option>
-          <option value="EUW">EUW</option>
-          <option value="ME">ME</option>
-          <option value="LAS">LAS</option>
-          <option value="BR">BR</option>
-          <option value="LAN">LAN</option>
-        </select>
+          <input
+            type="text"
+            placeholder="Player Riot ID"
+            className="px-3 py-4 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-base border border-blueGray-300 outline-none focus:outline-none focus:shadow-outline w-full"
+            value={inputValue}
+            onChange={handleInputChange}
+          />
+
+          {/* Select Field */}
+
+          <select
+            value={selectedRegionValue}
+            onChange={handleSelectRegionChange}
+            className="ml-2 h-full bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          >
+            <option value="VN">VN</option>
+            <option value="TR">TR</option>
+            <option value="NA">NA</option>
+            <option value="ME">ME</option>
+            <option value="EUW">EUW</option>
+            <option value="EUW">EUW</option>
+            <option value="ME">ME</option>
+            <option value="LAS">LAS</option>
+            <option value="BR">BR</option>
+            <option value="LAN">LAN</option>
+          </select>
+        </div>
+
+        {/* Div containing select field and read-only field */}
+        <div style={{ marginTop: "20px" }} className="select-container">
+          {/* Select Field */}
+          <select
+            value={selectedValue}
+            onChange={handleSelectChange}
+            className="h-full bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          >
+            <option value="Ánh Nắng Của An">Ánh Nắng Của An</option>
+            <option value="matessa">matessa</option>
+            <option value="white space">white space</option>
+            <option value="LT Frozti">LT Frozti</option>
+            <option value="Agurin">Agurin</option>
+            <option value="Flakkardo">Flakkardo</option>
+            <option value="Magic">Magic</option>
+            <option value="TWlTCH thewarsor">TWlTCH thewarsor</option>
+            <option value="frosty">frosty</option>
+            <option value="STEPZ">STEPZ</option>
+          </select>
+
+          {/* Read-Only Field */}
+          <input
+            type="text"
+            value={readOnlyValue}
+            readOnly
+            className="ml-2 px-3 py-4 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-base border border-blueGray-300 outline-none focus:outline-none focus:shadow-outline w-full"
+          />
+        </div>
+        <button
+          onClick={handleClick}
+          className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-sm px-6 py-3 rounded-full shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+          type="button"
+        >
+          Submit
+        </button>
+        {/* <p>PUUID: {data?.accountByRiotID.puuid}</p> */}
       </div>
-
-      {/* Div containing select field and read-only field */}
-      <div style={{ marginTop: "20px" }}>
-        {/* Select Field */}
-        <select value={selectedValue} onChange={handleSelectChange}>
-          <option value="Ánh Nắng Của An">Ánh Nắng Của An</option>
-          <option value="matessa">matessa</option>
-          <option value="white space">white space</option>
-          <option value="LT Frozti">LT Frozti</option>
-          <option value="Agurin">Agurin</option>
-          <option value="Flakkardo">Flakkardo</option>
-          <option value="Magic">Magic</option>
-          <option value="TWlTCH thewarsor">TWlTCH thewarsor</option>
-          <option value="frosty">frosty</option>
-          <option value="STEPZ">STEPZ</option>
-        </select>
-
-        {/* Read-Only Field */}
-        <input
-          type="text"
-          value={readOnlyValue}
-          readOnly
-          style={{ marginLeft: "10px" }}
-        />
-      </div>
-      <button style={{ marginTop: "20px" }} onClick={handleClick}>
-        Submit
-      </button>
-      {/* <p>PUUID: {data?.accountByRiotID.puuid}</p> */}
-    </div>
+    </>
   );
 };
 export default HomePage;
