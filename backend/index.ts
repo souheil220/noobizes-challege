@@ -8,7 +8,6 @@ dotenv.config({
 });
 
 const API_KEY = process.env.API_KEY;
-console.log(process.env);
 
 const REGION = "na1"; // Replace with appropriate region
 
@@ -44,7 +43,7 @@ const typeDefs = gql`
   }
 
   type Query {
-    accountByRiotID(gameName: String!, tagLine: String!): Account
+    accountByRiotID(gameName: String!, tagLine: String!): String
     summonerByPUUID(encryptedPUUID: String!): Summoner
     matchesByPUUID(puuid: String!, start: Int, count: Int): [String]
     matchDetails(matchId: String!, puuid: String!): Match
@@ -61,7 +60,7 @@ const resolvers = {
       const response = await axios.get(
         `https://americas.api.riotgames.com/riot/account/v1/accounts/by-riot-id/${gameName}/${tagLine}?api_key=${API_KEY}`
       );
-      return response.data;
+      return response.data.puuid;
     },
     summonerByPUUID: async (
       _: any,
