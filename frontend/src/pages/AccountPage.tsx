@@ -1,41 +1,74 @@
 // src/pages/AccountPage.tsx
-import React from 'react';
-import { useParams } from 'react-router-dom';
-import { useQuery, gql } from '@apollo/client';
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { useQuery, gql } from "@apollo/client";
+import "../assets/styles/AccountPage.css"; // Import the CSS file
+import CardTable from "../components/Cards/CardTable"; // Ensure the import path is correct
 
 const GET_ACCOUNT_BY_RIOT_ID = gql`
   query GetAccount($gameName: String!, $tagLine: String!) {
-    accountByRiotID(gameName: $gameName, tagLine: $tagLine) {
-      puuid
-    }
+    accountByRiotID(gameName: $gameName, tagLine: $tagLine)
   }
 `;
 
-interface AccountData {
-  accountByRiotID: {
-    puuid: string;
-  };
-}
-
-interface AccountVars {
-  gameName: string;
-  tagLine: string;
-}
+const GET_MATCHES_BY_PUUID = gql`
+  query GetMatches($puuid: String!, $start: Int, $count: Int) {
+    matchesByPUUID(puuid: $puuid, start: $start, count: $count)
+  }
+`;
 
 const AccountPage: React.FC = () => {
-  const { gameName, tagLine } = useParams<{ gameName: string; tagLine: string }>();
-  const { loading, error, data } = useQuery<AccountData, AccountVars>(GET_ACCOUNT_BY_RIOT_ID, {
-    variables: { gameName: gameName!, tagLine: tagLine! },
+  const { gameName, tagLine } = useParams<{
+    gameName: string;
+    tagLine: string;
+  }>();
+
+  const {
+    loading: accountLoading,
+    data: accountData,
+    error: accountError,
+  } = useQuery(GET_ACCOUNT_BY_RIOT_ID, {
+    variables: { gameName, tagLine },
+    skip: !(gameName && tagLine),
+  });
+  // State to store the puuid for the second query
+  const [puuid, setPuuid] = useState<string>("");
+
+  // Effect to update puuid once data is available
+  useEffect(() => {
+    if (accountData?.accountByRiotID) {
+      setPuuid(accountData.accountByRiotID);
+    }
+  }, [accountData]);
+
+  const {
+    loading: matchLoading,
+    data: matchesData,
+    error: matchError,
+  } = useQuery(GET_MATCHES_BY_PUUID, {
+    variables: { puuid },
+    skip: !puuid,
   });
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
+  const error = accountError || matchError;
 
+  if (error)
+    return (
+      <p>
+        {puuid} Error: {error.message}
+      </p>
+    );
   return (
-    <div>
-      <h1>Account Information</h1>
-      <p>PUUID: {data?.accountByRiotID.puuid}</p>
-    </div>
+    <>
+      <div className="bg-image"></div>
+      <div className="home-container">
+        <h1>Account Information</h1>
+
+        <div className="w-full  px-4">
+          {<CardTable data={matchesData} color="light" />}
+        </div>
+      </div>
+    </>
   );
 };
 

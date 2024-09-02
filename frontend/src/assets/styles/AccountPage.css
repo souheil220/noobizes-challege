@@ -1,0 +1,28 @@
+ody,
+html {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.bg-image {
+  background-image: url("../background.png");
+  height: 100vh; /* Makes the div take up the full height of the viewport */
+  width: 100%; /* Makes the div take up the full width of the viewport */
+  position: fixed; /* Keeps the background fixed in place */
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+  top: 0;
+  left: 0;
+  z-index: -1; /* Puts the background behind other elements */
+}
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  margin: 0 10%;
+  /* color: white; */
+}
