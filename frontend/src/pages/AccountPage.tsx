@@ -24,7 +24,6 @@ const AccountPage: React.FC = () => {
   }>();
 
   const {
-    loading: accountLoading,
     data: accountData,
     error: accountError,
   } = useQuery(GET_ACCOUNT_BY_RIOT_ID, {
@@ -42,7 +41,6 @@ const AccountPage: React.FC = () => {
   }, [accountData]);
 
   const {
-    loading: matchLoading,
     data: matchesData,
     error: matchError,
   } = useQuery(GET_MATCHES_BY_PUUID, {
@@ -65,7 +63,7 @@ const AccountPage: React.FC = () => {
         <h1>Account Information</h1>
 
         <div className="w-full  px-4">
-          {<CardTable data={matchesData} color="light" />}
+          {<CardTable data={matchesData} puuid={puuid} color="light" />}
         </div>
       </div>
     </>

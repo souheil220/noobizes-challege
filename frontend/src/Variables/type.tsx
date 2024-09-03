@@ -33,3 +33,14 @@ export interface AccountVars {
 export interface MatchVars {
   puuid: string;
 }
+
+// Data returned from the GET_MATCH_DETAILS query
+export type MatchDetailData = {
+  matchDetails: Match;
+};
+
+// Variables used in the GET_MATCH_DETAILS query
+export type MatchDetailVars = {
+  matchId: string;
+  puuid: string;
+};

@@ -1,15 +1,25 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { MatchData } from "../../Variables/type"; // Import types
+import { useNavigate } from "react-router-dom";
 
 // components
 
 interface CardTableProps {
   color?: "light" | "dark";
   data?: MatchData;
+  puuid: string;
 }
 
-const CardTable: React.FC<CardTableProps> = ({ color = "light", data }) => {
+const CardTable: React.FC<CardTableProps> = ({
+  color = "light",
+  data,
+  puuid,
+}) => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate(`/match/TR1_1549170715/${puuid}`);
+  };
   return (
     <div
       className={
@@ -79,7 +89,7 @@ const CardTable: React.FC<CardTableProps> = ({ color = "light", data }) => {
                 </td>
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                   <button
-                    //onClick="#"
+                    onClick={() => handleClick()}
                     className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-sm px-6 py-3 rounded-full shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
                   >
