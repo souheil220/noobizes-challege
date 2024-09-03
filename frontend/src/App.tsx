@@ -10,8 +10,8 @@ const App: React.FC = () => {
     <Router>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/account/:gameName/:tagLine" element={<AccountPage />} />
-        <Route path="/match/:matchId/:puuid" element={<MatchDetailsPage />} />
+        <Route path="/account/" element={<AccountPage />} />
+        <Route path="/match/" element={<MatchDetailsPage />} />
       </Routes>
     </Router>
   );

@@ -8,10 +8,8 @@ const HomePage: React.FC = () => {
   // State to store the selected value from the select field
   const [selectedValue, setSelectedValue] = useState<string>("Ánh Nắng Của An");
 
-  const [selectedRegionValue, setSelectedRegionValue] = useState<string>("VN");
-
-  const [hiddenRegionInputValue, setHiddenRegionInputValue] =
-    useState<string>("VN");
+  const [selectedRegionValue, setSelectedRegionValue] =
+    useState<string>("AMERICAS");
 
   // State to store the value affected by the select input
   const [readOnlyValue, setReadOnlyValue] = useState<string>("keria");
@@ -29,44 +27,36 @@ const HomePage: React.FC = () => {
     switch (value) {
       case "Ánh Nắng Của An":
         setReadOnlyValue("keria");
-        setHiddenRegionInputValue("VN");
+
         break;
       case "matessa":
         setReadOnlyValue("kimse");
-        setHiddenRegionInputValue("TR");
+
         break;
         break;
       case "white space":
         setReadOnlyValue("srtty");
-        setHiddenRegionInputValue("NA");
         break;
       case "LT Frozti":
         setReadOnlyValue("1v9");
-        setHiddenRegionInputValue("ME");
         break;
       case "Agurin":
         setReadOnlyValue("EUW");
-        setHiddenRegionInputValue("EUW");
         break;
       case "Flakkardo":
         setReadOnlyValue("METIN");
-        setHiddenRegionInputValue("EUW");
         break;
       case "Magic":
         setReadOnlyValue("9282");
-        setHiddenRegionInputValue("ME");
         break;
       case "TWlTCH thewarsor":
         setReadOnlyValue("LAS");
-        setHiddenRegionInputValue("LAS");
         break;
       case "frosty":
         setReadOnlyValue("KR3");
-        setHiddenRegionInputValue("BR");
         break;
       case "STEPZ":
         setReadOnlyValue("LAN");
-        setHiddenRegionInputValue("LAN");
         break;
       default:
         setReadOnlyValue("");
@@ -81,13 +71,25 @@ const HomePage: React.FC = () => {
   };
 
   const handleClick = () => {
-    if (inputValue.trim() === "") {
+    var summonerName: string[];
+    if (inputValue === "") {
+      summonerName = [selectedValue, readOnlyValue];
       // If input is empty, use selectedValue and readOnlyValue for navigation
-      navigate(`/account/${selectedValue}/${readOnlyValue}`);
+      navigate(`/account/`, {
+        state: {
+          summonerName: summonerName,
+          region: selectedRegionValue,
+        },
+      });
     } else {
       // If input is not empty, use inputValue for navigation
-      var summonerName: string[] = inputValue.split(" ");
-      navigate(`/account/${summonerName[0]}/${summonerName[1]}`);
+      summonerName = inputValue.split(" ");
+      // navigate(`/account/${summonerName[0]}/${summonerName[1]}`);
+      navigate(`/account/`, {
+        state: {
+          summonerName: summonerName,
+        },
+      });
     }
   };
   return (
@@ -115,20 +117,18 @@ const HomePage: React.FC = () => {
           <select
             value={selectedRegionValue}
             onChange={handleSelectRegionChange}
-            className="ml-2 h-full bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="ml-2 h-full bg-gray-50 border border-gray-300 text-gray-900  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           >
-            <option value="VN">VN</option>
-            <option value="TR">TR</option>
-            <option value="NA">NA</option>
-            <option value="ME">ME</option>
-            <option value="EUW">EUW</option>
-            <option value="EUW">EUW</option>
-            <option value="ME">ME</option>
-            <option value="LAS">LAS</option>
-            <option value="BR">BR</option>
-            <option value="LAN">LAN</option>
+            <option value="AMERICAS">AMERICAS</option>
+            <option value="ASIA">ASIA</option>
+            <option value="ESPORTS">ESPORTS</option>
+            <option value="EUROPE">EUROPE</option>
           </select>
         </div>
+
+        <h5 className="text-4xl font-normal leading-normal mt-0 mt-2 text-red-800">
+          OR
+        </h5>
 
         {/* Div containing select field and read-only field */}
         <div style={{ marginTop: "20px" }} className="select-container">
@@ -136,7 +136,7 @@ const HomePage: React.FC = () => {
           <select
             value={selectedValue}
             onChange={handleSelectChange}
-            className="h-full bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="h-full bg-gray-50 border border-gray-300 text-gray-900  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           >
             <option value="Ánh Nắng Của An">Ánh Nắng Của An</option>
             <option value="matessa">matessa</option>
@@ -157,15 +157,24 @@ const HomePage: React.FC = () => {
             readOnly
             className="ml-2 px-3 py-4 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-base border border-blueGray-300 outline-none focus:outline-none focus:shadow-outline w-full"
           />
+          <select
+            value={selectedRegionValue}
+            onChange={handleSelectRegionChange}
+            className="ml-2 h-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          >
+            <option value="AMERICAS">AMERICAS</option>
+            <option value="ASIA">ASIA</option>
+            <option value="ESPORTS">ESPORTS</option>
+            <option value="EUROPE">EUROPE</option>
+          </select>
         </div>
         <button
           onClick={handleClick}
-          className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-sm px-6 py-3 rounded-full shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+          className="bg-lightBlue-500 text-white active:bg-lightBlue-600 mt-3 font-bold uppercase text-sm px-6 py-3 rounded-full shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
           type="button"
         >
           Submit
         </button>
-        {/* <p>PUUID: {data?.accountByRiotID.puuid}</p> */}
       </div>
     </>
   );

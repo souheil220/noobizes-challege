@@ -1,11 +1,10 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useQuery, gql } from "@apollo/client";
-import { MatchDetailData, MatchDetailVars } from "../Variables/type"; // Import the types if you have them defined
 
 const GET_MATCH_DETAILS = gql`
-  query GetMatchDetails($matchId: String!, $puuid: String!) {
-    matchDetails(matchId: $matchId, puuid: $puuid) {
+  query GetMatchDetails($matchId: String!, $puuid: String!, $region: String!) {
+    matchDetails(matchId: $matchId, puuid: $puuid, region: $region) {
       matchId
       participants {
         riotIdGameName
@@ -23,14 +22,14 @@ const GET_MATCH_DETAILS = gql`
 `;
 
 const MatchDetailsPage: React.FC = (color = "light") => {
-  const { matchId, puuid } = useParams<{ matchId: string; puuid: string }>();
+  const location = useLocation();
 
-  const { loading, error, data } = useQuery<MatchDetailData, MatchDetailVars>(
-    GET_MATCH_DETAILS,
-    {
-      variables: { matchId: matchId!, puuid: puuid! },
-    }
-  );
+  const { matchId, puuid, region } = location.state || {};
+
+  const { loading, error, data } = useQuery(GET_MATCH_DETAILS, {
+    variables: { matchId, puuid, region },
+    skip: !(matchId && puuid && region),
+  });
 
   if (error) return <p>Error: {error.message}</p>;
 
