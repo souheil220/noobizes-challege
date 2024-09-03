@@ -6,7 +6,8 @@ import {
   ApolloProvider as Provider,
 } from "@apollo/client";
 
-const BACK_PORT = process.env.REACT_APP_BACK_PORT;
+const BACK_PORT = 4000;
+// const BACK_PORT = process.env.REACT_APP_BACK_PORT;
 
 if (!BACK_PORT) {
   throw new Error("BACK_PORT environment variable is not defined");

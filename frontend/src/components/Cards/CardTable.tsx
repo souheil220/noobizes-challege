@@ -31,21 +31,13 @@ const CardTable: React.FC<CardTableProps> = ({
   return (
     <div
       className={
-        "relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded " +
-        (color === "light" ? "bg-white" : "bg-lightBlue-900 text-white")
+        "relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-lightBlue-900 text-white"
       }
     >
       <div className="rounded-t mb-0 px-4 py-3 border-0">
         <div className="flex flex-wrap items-center">
           <div className="relative w-full px-4 max-w-full flex-grow flex-1">
-            <h3
-              className={
-                "font-semibold text-lg " +
-                (color === "light" ? "text-blueGray-700" : "text-white")
-              }
-            >
-              Games Tables
-            </h3>
+            <h3 className={"font-semibold text-lg text-white"}>Games Tables</h3>
           </div>
         </div>
       </div>
@@ -57,30 +49,21 @@ const CardTable: React.FC<CardTableProps> = ({
               <tr>
                 <th
                   className={
-                    "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
-                    (color === "light"
-                      ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
-                      : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
+                    "px-6 align-middle text-center border border-solid py-3 text-xs uppercase whitespace-nowrap font-semibold text-left bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700"
                   }
                 >
                   Numéro
                 </th>
                 <th
                   className={
-                    "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
-                    (color === "light"
-                      ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
-                      : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
+                    "px-6 align-middle text-center border border-solid py-3 text-xs uppercase whitespace-nowrap font-semibold text-left bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700"
                   }
                 >
                   Game ID
                 </th>
                 <th
                   className={
-                    "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
-                    (color === "light"
-                      ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
-                      : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
+                    "px-6 align-middle text-center border border-solid py-3 text-xs uppercase whitespace-nowrap font-semibold text-left bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700"
                   }
                 >
                   Detail
@@ -90,16 +73,16 @@ const CardTable: React.FC<CardTableProps> = ({
             <tbody>
               {data?.matchesByPUUID.map((match, index) => (
                 <tr key={index}>
-                  <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                  <td className="border-t-0 text-center px-6 align-middle border-l-0 border-r-0 text-base whitespace-nowrap p-4">
                     {index + 1}
                   </td>
-                  <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                  <td className="border-t-0 text-center px-6 align-middle border-l-0 border-r-0 text-base whitespace-nowrap p-4">
                     {match}
                   </td>
-                  <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                  <td className="border-t-0 text-center text-center	 px-6 align-middle border-l-0 border-r-0 text-base whitespace-nowrap p-4">
                     <button
                       onClick={() => handleClick(match)}
-                      className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-sm px-6 py-3 rounded-full shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                      className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-sm px-6 py-3 rounded-full shadow hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150"
                       type="button"
                     >
                       Détail

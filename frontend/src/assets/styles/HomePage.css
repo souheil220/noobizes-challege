@@ -5,17 +5,7 @@ html {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
 }
-.bg-image {
-  background-image: url("../background.png");
-  height: 100vh; /* Makes the div take up the full height of the viewport */
-  width: 100%; /* Makes the div take up the full width of the viewport */
-  position: fixed; /* Keeps the background fixed in place */
-  filter: blur(8px);
-  -webkit-filter: blur(8px);
-  top: 0;
-  left: 0;
-  z-index: -1; /* Puts the background behind other elements */
-}
+
 .home-container {
   display: flex;
   flex-direction: column;
@@ -25,51 +15,71 @@ html {
   background-size: cover;
   background-position: center;
   margin: 0 10%;
-  /* color: white; */
 }
-
-.title {
-  font-size: 2.5rem;
-  font-weight: bold;
-  margin-bottom: 20px;
-}
-
-/* .input-field {
-  padding: 10px;
-  border-radius: 5px;
-  border: none;
-  margin-bottom: 20px;
-  width: 300px;
-} */
 
 .select-container {
   width: 100%;
   display: flex;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 30px;
   justify-content: center;
 }
 
-.readonly-field {
-  padding: 10px;
-  border-radius: 5px;
-  border: none;
-  margin-left: 10px;
-  width: 200px;
+/* Style du texte */
+h3,
+h5 {
+  font-family: "Arial", sans-serif;
+  font-weight: bold;
+  color: #ffffff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
 
-.submit-button {
-  padding: 10px 20px;
-  border-radius: 5px;
-  border: none;
-  background-color: #007bff;
+/* AmÃ©lioration des champs d'entrÃ©e */
+input[type="text"],
+select {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e0;
+  margin-right: 10px;
+  font-size: 1rem;
+}
+
+/* Bouton stylisÃ© */
+button {
+  background: linear-gradient(90deg, #007bff, #0056b3);
   color: white;
+  padding: 12px 24px;
+  border-radius: 30px;
+  border: none;
   font-size: 1rem;
   cursor: pointer;
-  margin-top: 20px;
-  transition: background-color 0.3s ease;
+  transition: background 0.3s ease;
+  margin-top: 30px; /* Espacement supÃ©rieur augmentÃ© */
 }
 
-.submit-button:hover {
-  background-color: #0056b3;
+button:hover {
+  background: linear-gradient(90deg, #0056b3, #003d7a);
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Effet de flou ajustÃ© */
+.bg-image {
+  background-image: url("../background.png");
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  filter: blur(5px); /* RÃ©duction du flou */
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
 }

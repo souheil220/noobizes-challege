@@ -39,23 +39,17 @@ const MatchDetailsPage: React.FC = (color = "light") => {
     <>
       <div className="bg-image"></div>
       <div className="home-container">
-        <h1>Game Details</h1>
+        <h1 className="text-4xl font-bold mb-6 text-white">Game Details</h1>
         <div className="w-full  px-4">
           <div
             className={
-              "relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded " +
-              (color === "light" ? "bg-white" : "bg-lightBlue-900 text-white")
+              "relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-lightBlue-900 text-white"
             }
           >
             <div className="rounded-t mb-0 px-4 py-3 border-0">
               <div className="flex flex-wrap items-center">
                 <div className="relative w-full px-4 max-w-full flex-grow flex-1">
-                  <h3
-                    className={
-                      "font-semibold text-lg " +
-                      (color === "light" ? "text-blueGray-700" : "text-white")
-                    }
-                  >
+                  <h3 className={"font-semibold text-lg text-white"}>
                     Games Detail Table
                   </h3>
                 </div>
@@ -171,34 +165,34 @@ const MatchDetailsPage: React.FC = (color = "light") => {
                   </thead>
                   <tbody>
                     <tr>
-                      <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                      <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-base whitespace-nowrap p-4">
                         {match.matchId}
                       </td>
-                      <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                      <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-base whitespace-nowrap p-4">
                         {match.gameCreation}
                       </td>
-                      <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                      <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-base whitespace-nowrap p-4">
                         {match.gameDuration}
                       </td>
-                      <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                      <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-base whitespace-nowrap p-4">
                         {match.gameEndTimestamp}
                       </td>
-                      <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                      <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-base whitespace-nowrap p-4">
                         {match.participants[0].riotIdGameName}
                       </td>
-                      <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                      <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-base whitespace-nowrap p-4">
                         {match.participants[0].riotIdTagline}
                       </td>
-                      <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                      <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-base whitespace-nowrap p-4">
                         {match.participants[0].championName}
                       </td>
-                      <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                      <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-base whitespace-nowrap p-4">
                         {match.participants[0].kills}
                       </td>
-                      <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                      <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-base whitespace-nowrap p-4">
                         {match.participants[0].deaths}
                       </td>
-                      <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                      <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-base whitespace-nowrap p-4">
                         {match.participants[0].assists}
                       </td>
                     </tr>

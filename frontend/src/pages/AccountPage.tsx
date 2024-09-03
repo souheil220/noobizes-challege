@@ -66,7 +66,7 @@ const AccountPage: React.FC = () => {
     <>
       <div className="bg-image"></div>
       <div className="home-container">
-        <h1>Account Information</h1>
+        <h1 className="text-4xl font-bold mb-6 text-white">Account Information</h1>
 
         <div className="w-full  px-4">
           {
