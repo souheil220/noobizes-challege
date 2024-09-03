@@ -9,8 +9,6 @@ dotenv.config({
 
 const API_KEY = process.env.API_KEY;
 
-const REGION = "na1"; // Replace with appropriate region
-
 const typeDefs = gql`
   type Account {
     puuid: String
@@ -43,10 +41,19 @@ const typeDefs = gql`
   }
 
   type Query {
-    accountByRiotID(gameName: String!, tagLine: String!): String
+    accountByRiotID(
+      gameName: String!
+      tagLine: String!
+      region: String!
+    ): String
     summonerByPUUID(encryptedPUUID: String!): Summoner
-    matchesByPUUID(puuid: String!, start: Int, count: Int): [String]
-    matchDetails(matchId: String!, puuid: String!): Match
+    matchesByPUUID(
+      puuid: String!
+      region: String!
+      start: Int
+      count: Int
+    ): [String]
+    matchDetails(matchId: String!, puuid: String!, region: String!): Match
   }
 `;
 
@@ -55,10 +62,14 @@ const resolvers = {
   Query: {
     accountByRiotID: async (
       _: any,
-      { gameName, tagLine }: { gameName: string; tagLine: string }
+      {
+        gameName,
+        tagLine,
+        region,
+      }: { gameName: string; tagLine: string; region: string }
     ) => {
       const response = await axios.get(
-        `https://americas.api.riotgames.com/riot/account/v1/accounts/by-riot-id/${gameName}/${tagLine}?api_key=${API_KEY}`
+        `https://${region}.api.riotgames.com/riot/account/v1/accounts/by-riot-id/${gameName}/${tagLine}?api_key=${API_KEY}`
       );
       return response.data.puuid;
     },
@@ -75,12 +86,11 @@ const resolvers = {
       _: any,
       {
         puuid,
+        region,
         start = 0,
         count = 10,
-      }: { puuid: string; start?: number; count?: number }
+      }: { puuid: string; region: string; start?: number; count?: number }
     ) => {
-      // const region = REGION === 'na1' || REGION === 'br1' || REGION === 'la1' ? 'americas' : REGION === 'euw1' ? 'europe' : 'asia';
-      const region = "europe";
       const response = await axios.get(
         `https://${region}.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?start=${start}&count=${count}&api_key=${API_KEY}`
       );
@@ -88,10 +98,12 @@ const resolvers = {
     },
     matchDetails: async (
       _: any,
-      { matchId, puuid }: { matchId: string; puuid: string }
+      {
+        matchId,
+        puuid,
+        region,
+      }: { matchId: string; puuid: string; region: string }
     ) => {
-      //const region = REGION === 'na1' || REGION === 'br1' || REGION === 'la1' ? 'americas' : REGION === 'euw1' ? 'europe' : 'asia';
-      const region = "europe";
       const response = await axios.get(
         `https://${region}.api.riotgames.com/lol/match/v5/matches/${matchId}?api_key=${API_KEY}`
       );
