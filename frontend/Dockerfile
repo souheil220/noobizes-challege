@@ -8,5 +8,3 @@ COPY . /app
 
 RUN npm install
 RUN npm install js-cookie
-
-CMD "npm" "run" "dev" "--" "--host"
