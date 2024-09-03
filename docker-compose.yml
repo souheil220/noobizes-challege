@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "4002:4000"
+    container_name: NOOBIZE_BACKEND
+    command: npm start
+    environment:
+      - API_KEY={API_KEY}
+      - BACK_PORT=4002
+
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "3002:3000"
+    container_name: NOOBIZE_FRONTEND
+    depends_on:
+      - backend
+    environment:
+      - REACT_APP_BACK_PORT=4002
+    command: npm run start
