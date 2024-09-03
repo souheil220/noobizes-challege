@@ -3,9 +3,9 @@ import { startStandaloneServer } from "@apollo/server/standalone";
 import { gql } from "graphql-tag";
 import axios from "axios";
 const dotenv = require("dotenv");
-dotenv.config({
-  path: "./config.env",
-});
+// dotenv.config({
+//   path: "./config.env",
+// });
 
 const API_KEY = process.env.API_KEY;
 
